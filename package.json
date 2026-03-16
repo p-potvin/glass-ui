@@ -17,7 +17,10 @@
     "dist"
   ],
   "scripts": {
+    "dev": "vite --config vite.preview.config.ts",
     "build": "vite build",
+    "build:preview": "vite build --config vite.preview.config.ts",
+    "preview": "vite preview --config vite.preview.config.ts",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [
