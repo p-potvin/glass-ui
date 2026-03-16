@@ -1,6 +1,12 @@
 import React from 'react'
 
-export type GlassVariant = 'frosted' | 'clear' | 'tinted'
+export type GlassVariant =
+  | 'frosted'
+  | 'clear'
+  | 'tinted'
+  | 'ultra-clear'
+  | 'subtle'
+  | 'soft-tint'
 
 export interface GlassPanelProps {
   /** Visual style of the glass effect */
@@ -20,12 +26,16 @@ export const GlassPanel: React.FC<GlassPanelProps> = ({
   children,
 }) => {
   const variantClasses: Record<GlassVariant, string> = {
-    frosted:
-      'bg-white/20 backdrop-blur-md border border-white/30 shadow-lg',
-    clear:
-      'bg-white/10 backdrop-blur-sm border border-white/20 shadow-md',
-    tinted:
-      'bg-blue-500/20 backdrop-blur-md border border-blue-300/30 shadow-lg',
+    // slightly stronger frosted look (but moderate opacity)
+    frosted: 'bg-white/18 backdrop-blur-sm border border-white/20 shadow-lg',
+    // very clear, almost transparent with minimal blur
+    'ultra-clear': 'bg-white/5 backdrop-blur-sm border border-white/10 shadow-sm',
+    // subtle glass: low opacity, minimal blur, almost invisible
+    subtle: 'bg-white/6 backdrop-blur-[1px] border border-white/8 shadow-none',
+    // soft tint variant with low opacity
+    'soft-tint': 'bg-pink-400/8 backdrop-blur-sm border border-pink-200/20 shadow-sm',
+    clear: 'bg-white/8 backdrop-blur-sm border border-white/12 shadow-sm',
+    tinted: 'bg-blue-500/12 backdrop-blur-sm border border-blue-300/20 shadow-md',
   }
 
   return (

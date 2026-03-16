@@ -2,7 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { GlassPanel, GlassVariant } from './components/GlassPanel'
 
-const variants: GlassVariant[] = ['frosted', 'clear', 'tinted']
+const variants: GlassVariant[] = [
+  'frosted',
+  'clear',
+  'tinted',
+  'ultra-clear',
+  'subtle',
+  'soft-tint',
+]
 
 function Preview() {
   return (
@@ -289,37 +296,62 @@ function DraggableGlass() {
     setPos({ x: 32, y: 160 })
   }
 
-  return (
-    <div style={{ left: pos.x, top: pos.y }} className="fixed z-50 w-64">
-      <div className="flex items-center justify-between gap-2 px-2 mb-2">
-        <div onMouseDown={startDrag} onTouchStart={startDragTouch} className="flex-1 cursor-grab">
-          <span className="text-xs text-white/80">Drag me</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <select
-            value={variant}
-            onChange={(e) => setVariant(e.target.value as GlassVariant)}
-            className="rounded bg-white/10 px-2 py-1 text-sm text-white"
-          >
-            {variants.map((v) => (
-              <option key={v} value={v} className="bg-slate-900">
-                {v}
-              </option>
-            ))}
-          </select>
-          <button
-            onClick={reset}
-            className="ml-2 rounded bg-white/10 px-2 py-1 text-xs text-white/80"
-          >
-            Reset
-          </button>
-        </div>
-      </div>
+  function isInteractiveTarget(target: EventTarget | null) {
+    if (!(target instanceof HTMLElement)) return false
+    // interactive elements: inputs, selects, textareas, buttons, links, labels
+    const interactive = target.closest('input,select,textarea,button,a,label,[data-no-drag]')
+    return !!interactive
+  }
 
-      <GlassPanel variant={variant} className="p-4">
-        <div className="text-sm text-white">
-          <strong className="block">Movable Glass</strong>
-          <span className="block text-xs text-white/70">Use the header to drag this panel anywhere.</span>
+  function startDragIfAllowed(e: React.MouseEvent | React.TouchEvent) {
+    const target = (e as any).target as EventTarget
+    if (isInteractiveTarget(target)) return
+    // handle mouse or touch start
+    if ('touches' in e) startDragTouch(e as React.TouchEvent)
+    else startDrag(e as React.MouseEvent)
+  }
+
+  return (
+    <div
+      style={{ left: pos.x, top: pos.y }}
+      className="fixed z-50 w-64 cursor-grab"
+      onMouseDown={startDragIfAllowed}
+      onTouchStart={startDragIfAllowed}
+    >
+      <GlassPanel variant={variant} className="p-0">
+        <div className="flex items-center justify-between gap-2 px-3 py-2">
+          <div className="flex-1">
+            <span className="text-xs text-white/80">Drag anywhere on this panel</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <select
+              value={variant}
+              onChange={(e) => setVariant(e.target.value as GlassVariant)}
+              data-no-drag
+              className="rounded bg-white/10 px-2 py-1 text-sm text-white"
+            >
+              {variants.map((v) => (
+                <option key={v} value={v} className="bg-slate-900">
+                  {v}
+                </option>
+              ))}
+            </select>
+            <button
+              onClick={reset}
+              data-no-drag
+              className="ml-2 rounded bg-white/10 px-2 py-1 text-xs text-white/80"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <div className="p-4">
+          <div className="text-sm text-white">
+            <strong className="block">Movable Glass</strong>
+            <span className="block text-xs text-white/70">Drag this panel anywhere on the page.</span>
+          </div>
         </div>
       </GlassPanel>
     </div>
