@@ -318,42 +318,45 @@ function DraggableGlass() {
       onMouseDown={startDragIfAllowed}
       onTouchStart={startDragIfAllowed}
     >
-      <GlassPanel variant={variant} className="p-0">
+    <GlassPanel variant={variant} className="p-0">
+        <div className="p-4">
+            <div className="text-sm text-white">
+                <strong className="block text-xs">Drag this panel around.</strong>
+            </div>
+        </div>
         <div className="flex items-center justify-between gap-2 px-3 py-2">
-          <div className="flex-1">
-            <span className="text-xs text-white/80">Drag anywhere on this panel</span>
-          </div>
 
-          <div className="flex items-center gap-2">
-            <select
-              value={variant}
-              onChange={(e) => setVariant(e.target.value as GlassVariant)}
-              data-no-drag
-              className="rounded bg-white/10 px-2 py-1 text-sm text-white"
-            >
-              {variants.map((v) => (
-                <option key={v} value={v} className="bg-slate-900">
-                  {v}
-                </option>
-              ))}
-            </select>
-            <button
-              onClick={reset}
-              data-no-drag
-              className="ml-2 rounded bg-white/10 px-2 py-1 text-xs text-white/80"
-            >
-              Reset
-            </button>
-          </div>
+
+            <div className="flex items-center gap-2">
+                <select
+                    value={variant}
+                    onChange={(e) => setVariant(e.target.value as GlassVariant)}
+                    data-no-drag
+                    className="rounded bg-white/10 px-2 py-1 text-sm text-white"
+                >
+                    {variants.map((v) => (
+                        <option key={v} value={v} className="bg-slate-900">
+                            {v}
+                        </option>
+                    ))}
+                </select>
+                <button
+                    onClick={reset}
+                    data-no-drag
+                    className="ml-2 rounded bg-white/10 px-2 py-1 text-xs text-white/80"
+                >
+                    Reset
+                </button>
+            </div>
         </div>
 
         <div className="p-4">
-          <div className="text-sm text-white">
-            <strong className="block">Movable Glass</strong>
-            <span className="block text-xs text-white/70">Drag this panel anywhere on the page.</span>
-          </div>
+            <div className="text-sm text-white">
+                <strong className="block">Movable Glass</strong>
+                <span className="block text-xs text-white/70">Drag this panel anywhere on the page.</span>
+            </div>
         </div>
-      </GlassPanel>
+    </GlassPanel>
     </div>
   )
 }
