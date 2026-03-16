@@ -105,57 +105,11 @@ function GlassExample() {
       /* ignore */
     }
   }
-
   return (
     <section>
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h2 className="text-2xl font-semibold text-white">Interactive example</h2>
-          <p className="mt-2 max-w-md text-sm text-white/70">
-            Live designer controls: tint, blur, radius, and shadow.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3 rounded-xl bg-white/6 p-3">
-          <label className="flex items-center gap-2 text-sm text-white/80">
-            Variant
-            <select
-              value={variant}
-              onChange={(e) => setVariant(e.target.value as GlassVariant)}
-              className="rounded-lg border border-white/12 bg-white/8 px-2 py-1 text-white text-sm outline-none"
-            >
-              {variants.map((v) => (
-                <option key={v} value={v} className="bg-slate-900 text-black">
-                  {v}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="flex items-center gap-2 text-sm text-white/80">
-            Tint
-            <input
-              type="color"
-              value={tintColor}
-              onChange={(e) => setTintColor(e.target.value)}
-              data-no-drag
-              className="w-9 h-9 rounded-md border border-white/12 p-0"
-            />
-          </label>
-
-          <label className="flex items-center gap-2 text-sm text-white/80">
-            Opacity
-            <input
-              type="range"
-              min={0}
-              max={100}
-              value={Math.round(tintOpacity * 100)}
-              onChange={(e) => setTintOpacity(Number(e.target.value) / 100)}
-              data-no-drag
-              className="h-2 w-28 accent-indigo-400"
-            />
-          </label>
-        </div>
+      <div>
+        <h2 className="text-2xl font-semibold text-white">Interactive example</h2>
+        <p className="mt-2 max-w-md text-sm text-white/70">Live designer controls: tint, blur, radius, and shadow.</p>
       </div>
 
       <div className="mt-6">
@@ -165,16 +119,57 @@ function GlassExample() {
           tintOpacity={tintOpacity}
           blur={blurPx}
           style={{ borderRadius: `${radius}px`, boxShadow: shadow ? '0 12px 40px rgba(2,6,23,0.6)' : 'none' }}
-          className="h-64"
+          className="h-64 p-4"
         >
-          <div className="flex h-full flex-col justify-between">
-            <div>
-              <p className="text-lg font-semibold text-white">Live designer</p>
-              <p className="mt-2 text-sm text-white/70">Adjust settings and copy the resulting CSS.</p>
+          <div className="flex h-full gap-4">
+            <div className="flex-1 flex flex-col justify-between">
+              <div>
+                <p className="text-lg font-semibold text-white">Live designer</p>
+                <p className="mt-2 text-sm text-white/70">Adjust settings and copy the resulting CSS.</p>
+              </div>
+
+              <div className="text-xs text-white/60">Previewed with `GlassPanel` props applied.</div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
+            <div className="w-64 flex flex-col gap-2">
+              <div className="flex items-center justify-between gap-2">
+                <select
+                  value={variant}
+                  onChange={(e) => setVariant(e.target.value as GlassVariant)}
+                  data-no-drag
+                  className="rounded-lg border border-white/12 bg-white/8 px-2 py-1 text-white text-sm outline-none w-32"
+                >
+                  {variants.map((v) => (
+                    <option key={v} value={v} className="bg-slate-900 text-black">
+                      {v}
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  type="color"
+                  value={tintColor}
+                  onChange={(e) => setTintColor(e.target.value)}
+                  data-no-drag
+                  className="w-9 h-9 rounded-md border border-white/12 p-0"
+                />
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="text-xs text-white/80">Opacity</div>
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={Math.round(tintOpacity * 100)}
+                  onChange={(e) => setTintOpacity(Number(e.target.value) / 100)}
+                  data-no-drag
+                  className="h-2 w-28 accent-indigo-400"
+                />
+                <div className="text-xs text-white/60">{Math.round(tintOpacity * 100)}%</div>
+              </div>
+
+              <div className="flex items-center gap-2">
                 <div className="text-xs text-white/80">Blur</div>
                 <input
                   type="range"
@@ -183,25 +178,26 @@ function GlassExample() {
                   value={blurPx}
                   onChange={(e) => setBlurPx(Number(e.target.value))}
                   data-no-drag
-                  className="h-2 w-40 accent-indigo-400"
+                  className="h-2 w-28 accent-indigo-400"
                 />
                 <div className="text-xs text-white/60">{blurPx}px</div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <label className="flex items-center gap-2 text-sm text-white/80">
-                  Radius
-                  <input
-                    type="range"
-                    min={0}
-                    max={48}
-                    value={radius}
-                    onChange={(e) => setRadius(Number(e.target.value))}
-                    data-no-drag
-                    className="h-2 w-28 accent-indigo-400"
-                  />
-                </label>
+              <div className="flex items-center gap-2">
+                <div className="text-xs text-white/80">Radius</div>
+                <input
+                  type="range"
+                  min={0}
+                  max={48}
+                  value={radius}
+                  onChange={(e) => setRadius(Number(e.target.value))}
+                  data-no-drag
+                  className="h-2 w-28 accent-indigo-400"
+                />
+                <div className="text-xs text-white/60">{radius}px</div>
+              </div>
 
+              <div className="flex items-center justify-between gap-2">
                 <label className="flex items-center gap-2 text-sm text-white/80">
                   Shadow
                   <input
@@ -212,21 +208,20 @@ function GlassExample() {
                     className="h-4 w-4 accent-indigo-400"
                   />
                 </label>
+
+                <button
+                  onClick={copyCss}
+                  data-no-drag
+                  className="rounded-md bg-indigo-600 px-3 py-1 text-sm font-medium text-white"
+                >
+                  {copied ? 'Copied' : 'Copy CSS'}
+                </button>
               </div>
+
+              <pre className="mt-1 overflow-auto rounded-md bg-black/30 px-3 py-2 text-xs text-white/80 h-24">{cssString}</pre>
             </div>
           </div>
         </GlassPanel>
-
-        <div className="mt-3 flex items-start gap-3">
-          <pre className="flex-1 overflow-auto rounded-md bg-black/30 px-3 py-2 text-xs text-white/80">{cssString}</pre>
-          <button
-            onClick={copyCss}
-            data-no-drag
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-medium text-white"
-          >
-            {copied ? 'Copied' : 'Copy CSS'}
-          </button>
-        </div>
       </div>
     </section>
   )
@@ -280,60 +275,6 @@ function ScrollDemo() {
         <div className="relative h-[820px] overflow-auto">
           <div className="flex items-center justify-between gap-3 sticky top-4 z-10 px-6 pt-4">
             <h3 className="text-lg font-semibold text-white">Sticky glass overlay</h3>
-              <div className="flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2">
-                <label htmlFor="scrollVariant" className="text-sm font-medium text-white/80">
-                  Variant
-                </label>
-                <select
-                  id="scrollVariant"
-                  value={variant}
-                  onChange={(e) => setVariant(e.target.value as GlassVariant)}
-                  className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-white outline-none text-sm"
-                >
-                  {variants.map((v) => (
-                    <option key={v} value={v} className="bg-slate-900">
-                      {v}
-                    </option>
-                  ))}
-                </select>
-
-                <label className="flex items-center gap-2 text-sm text-white/80">
-                  Tint
-                  <input
-                    type="color"
-                    value={stickyTint}
-                    onChange={(e) => setStickyTint(e.target.value)}
-                    data-no-drag
-                    className="w-8 h-8 rounded-md border border-white/12 p-0"
-                  />
-                </label>
-
-                <label className="flex items-center gap-2 text-sm text-white/80">
-                  Opacity
-                  <input
-                    type="range"
-                    min={0}
-                    max={100}
-                    value={Math.round(stickyTintOpacity * 100)}
-                    onChange={(e) => setStickyTintOpacity(Number(e.target.value) / 100)}
-                    data-no-drag
-                    className="h-2 w-24 accent-indigo-400"
-                  />
-                </label>
-
-                <label className="flex items-center gap-2 text-sm text-white/80">
-                  Blur
-                  <input
-                    type="range"
-                    min={0}
-                    max={40}
-                    value={stickyBlurPx}
-                    onChange={(e) => setStickyBlurPx(Number(e.target.value))}
-                    data-no-drag
-                    className="h-2 w-24 accent-indigo-400"
-                  />
-                </label>
-              </div>
           </div>
 
           <GlassPanel
@@ -341,16 +282,73 @@ function ScrollDemo() {
             tint={stickyTint}
             tintOpacity={stickyTintOpacity}
             blur={stickyBlurPx}
-            className="sticky top-20 mx-6 mb-6 p-6 shadow-xl"
+            className="sticky top-20 mx-6 mb-6 p-4 shadow-xl"
           >
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-white">Sticky glass overlay</h3>
-              <p className="text-sm text-white/70">
-                The glass panel stays fixed while the background content scrolls beneath it.
-              </p>
-              <p className="text-xs text-white/60">
-                This helps you see how the glass effect behaves with different contrasts and colors.
-              </p>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h3 className="text-lg font-semibold text-white">Sticky glass overlay</h3>
+                <p className="text-sm text-white/70">
+                  The glass panel stays fixed while the background content scrolls beneath it.
+                </p>
+                <p className="text-xs text-white/60">
+                  This helps you see how the glass effect behaves with different contrasts and colors.
+                </p>
+              </div>
+
+              <div className="w-64 flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <label className="text-sm text-white/80">Variant</label>
+                  <select
+                    value={variant}
+                    onChange={(e) => setVariant(e.target.value as GlassVariant)}
+                    data-no-drag
+                    className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-white outline-none text-sm w-32"
+                  >
+                    {variants.map((v) => (
+                      <option key={v} value={v} className="bg-slate-900">
+                        {v}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <label className="text-sm text-white/80">Tint</label>
+                  <input
+                    type="color"
+                    value={stickyTint}
+                    onChange={(e) => setStickyTint(e.target.value)}
+                    data-no-drag
+                    className="w-8 h-8 rounded-md border border-white/12 p-0"
+                  />
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <label className="text-sm text-white/80">Opacity</label>
+                  <input
+                    type="range"
+                    min={0}
+                    max={100}
+                    value={Math.round(stickyTintOpacity * 100)}
+                    onChange={(e) => setStickyTintOpacity(Number(e.target.value) / 100)}
+                    data-no-drag
+                    className="h-2 w-28 accent-indigo-400"
+                  />
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <label className="text-sm text-white/80">Blur</label>
+                  <input
+                    type="range"
+                    min={0}
+                    max={40}
+                    value={stickyBlurPx}
+                    onChange={(e) => setStickyBlurPx(Number(e.target.value))}
+                    data-no-drag
+                    className="h-2 w-28 accent-indigo-400"
+                  />
+                </div>
+              </div>
             </div>
           </GlassPanel>
 
