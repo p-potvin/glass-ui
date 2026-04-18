@@ -1,30 +1,35 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { GlassPanel, GlassVariant } from './components/GlassPanel'
+import './index.css'
+
+import { LiquidGlassEffect } from './components/glass/LiquidGlass'
 
 const variants: GlassVariant[] = [
+  'liquid',
+  'vibrant',
+  'solarized-frosted',
   'frosted',
   'clear',
-  'tinted',
-  'ultra-clear',
   'subtle',
-  'soft-tint',
 ]
 
 function Preview() {
   return (
-    <main className="min-h-screen px-6 py-12">
+    <main className="min-h-screen px-6 py-12 text-[#657b83]">
       <header className="mx-auto max-w-5xl text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-[#586e75]">
           glass-ui preview
         </h1>
-        <p className="mt-4 text-lg text-white/70">
+        <p className="mt-4 text-lg text-[#93a1a1]">
           A quick preview of the supported glass variants. Change the selection to see how the glass
           effect updates.
         </p>
       </header>
 
       <section className="mx-auto mt-12 flex max-w-5xl flex-col gap-8">
+        <LiquidGlassEffect />
+
         <GlassExample />
 
         <ScrollDemo />
@@ -38,31 +43,30 @@ function Preview() {
             >
               <div className="flex h-full flex-col justify-between">
                 <div>
-                  <h2 className="text-xl font-semibold text-white">{variant}</h2>
-                  <p className="mt-2 text-sm text-white/80">
+                  <h2 className="text-xl font-semibold text-[#586e75]">{variant}</h2>
+                  <p className="mt-2 text-sm text-[#657b83]">
                     Example of the <span className="font-medium">{variant}</span> glass style.
                   </p>
                 </div>
 
-                <p className="text-xs text-white/60">
-                  Imported from <code className="rounded bg-white/10 px-1 py-0.5">GlassPanel</code>
+                <p className="text-xs text-[#93a1a1]">
+                  Imported from <code className="rounded bg-[#eee8d5] px-1 py-0.5">GlassPanel</code>
                 </p>
               </div>
             </GlassPanel>
           ))}
         </div>
 
-        <footer className="mx-auto max-w-5xl rounded-2xl bg-white/10 p-6 text-sm text-white/70">
+        <footer className="mx-auto max-w-5xl rounded-2xl bg-[#eee8d5] p-6 text-sm text-[#657b83]">
           <p>
-            This preview page is stored in <code className="rounded bg-white/10 px-1 py-0.5">index.html</code> and
-            <code className="rounded bg-white/10 px-1 py-0.5">src/preview.tsx</code>.
+            This preview page is stored in <code className="rounded bg-[#fdf6e3] px-1 py-0.5">index.html</code> and
+            <code className="rounded bg-[#fdf6e3] px-1 py-0.5">src/preview.tsx</code>.
           </p>
           <p className="mt-2">
-            To deploy this preview site, read the instructions in <code className="rounded bg-white/10 px-1 py-0.5">README.md</code>.
+            To deploy this preview site, read the instructions in <code className="rounded bg-[#fdf6e3] px-1 py-0.5">README.md</code>.
           </p>
         </footer>
       </section>
-      <DraggableGlass />
     </main>
   )
 }
@@ -108,8 +112,8 @@ function GlassExample() {
   return (
     <section>
       <div>
-        <h2 className="text-2xl font-semibold text-white">Interactive example</h2>
-        <p className="mt-2 max-w-md text-sm text-white/70">Live designer controls: tint, blur, radius, and shadow.</p>
+        <h2 className="text-2xl font-semibold text-[#586e75]">Interactive example</h2>
+        <p className="mt-2 max-w-md text-sm text-[#93a1a1]">Live designer controls: tint, blur, radius, and shadow.</p>
       </div>
 
       <div className="mt-6">
@@ -118,17 +122,17 @@ function GlassExample() {
           tint={tintColor}
           tintOpacity={tintOpacity}
           blur={blurPx}
-          style={{ borderRadius: `${radius}px`, boxShadow: shadow ? '0 12px 40px rgba(2,6,23,0.6)' : 'none' }}
-          className="h-64 p-4"
+          style={{ borderRadius: `${radius}px`, boxShadow: shadow ? '0 12px 40px rgba(0,0,0,0.1)' : 'none' }}
+          className="h-64 p-4 border border-[#93a1a1]/20 bg-white/20"
         >
           <div className="flex h-full gap-4">
             <div className="flex-1 flex flex-col justify-between">
               <div>
-                <p className="text-lg font-semibold text-white">Live designer</p>
-                <p className="mt-2 text-sm text-white/70">Adjust settings and copy the resulting CSS.</p>
+                <p className="text-lg font-semibold text-[#586e75]">Live designer</p>
+                <p className="mt-2 text-sm text-[#657b83]">Adjust settings and copy the resulting CSS.</p>
               </div>
 
-              <div className="text-xs text-white/60">Previewed with `GlassPanel` props applied.</div>
+              <div className="text-xs text-[#93a1a1]">Previewed with `GlassPanel` props applied.</div>
             </div>
 
             <div className="w-64 flex flex-col gap-2">
@@ -137,10 +141,10 @@ function GlassExample() {
                   value={variant}
                   onChange={(e) => setVariant(e.target.value as GlassVariant)}
                   data-no-drag
-                  className="rounded-lg border border-white/12 bg-white/8 px-2 py-1 text-white text-sm outline-none w-32"
+                  className="rounded-lg border border-[#93a1a1]/20 bg-[#eee8d5] px-2 py-1 text-[#657b83] text-sm outline-none w-32"
                 >
                   {variants.map((v) => (
-                    <option key={v} value={v} className="bg-slate-900 text-black">
+                    <option key={v} value={v} className="bg-[#eee8d5] text-[#657b83]">
                       {v}
                     </option>
                   ))}
@@ -151,12 +155,12 @@ function GlassExample() {
                   value={tintColor}
                   onChange={(e) => setTintColor(e.target.value)}
                   data-no-drag
-                  className="w-9 h-9 rounded-md border border-white/12 p-0"
+                  className="w-9 h-9 rounded-md border border-[#93a1a1]/20 p-0"
                 />
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="text-xs text-white/80">Opacity</div>
+                <div className="text-xs text-[#586e75]">Opacity</div>
                 <input
                   type="range"
                   min={0}
@@ -164,13 +168,13 @@ function GlassExample() {
                   value={Math.round(tintOpacity * 100)}
                   onChange={(e) => setTintOpacity(Number(e.target.value) / 100)}
                   data-no-drag
-                  className="h-2 w-28 accent-indigo-400"
+                  className="h-2 w-28 accent-[#268bd2]"
                 />
-                <div className="text-xs text-white/60">{Math.round(tintOpacity * 100)}%</div>
+                <div className="text-xs text-[#657b83]">{Math.round(tintOpacity * 100)}%</div>
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="text-xs text-white/80">Blur</div>
+                <div className="text-xs text-[#586e75]">Blur</div>
                 <input
                   type="range"
                   min={0}
@@ -178,13 +182,13 @@ function GlassExample() {
                   value={blurPx}
                   onChange={(e) => setBlurPx(Number(e.target.value))}
                   data-no-drag
-                  className="h-2 w-28 accent-indigo-400"
+                  className="h-2 w-28 accent-[#268bd2]"
                 />
-                <div className="text-xs text-white/60">{blurPx}px</div>
+                <div className="text-xs text-[#657b83]">{blurPx}px</div>
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="text-xs text-white/80">Radius</div>
+                <div className="text-xs text-[#586e75]">Radius</div>
                 <input
                   type="range"
                   min={0}
@@ -192,33 +196,33 @@ function GlassExample() {
                   value={radius}
                   onChange={(e) => setRadius(Number(e.target.value))}
                   data-no-drag
-                  className="h-2 w-28 accent-indigo-400"
+                  className="h-2 w-28 accent-[#268bd2]"
                 />
-                <div className="text-xs text-white/60">{radius}px</div>
+                <div className="text-xs text-[#657b83]">{radius}px</div>
               </div>
 
               <div className="flex items-center justify-between gap-2">
-                <label className="flex items-center gap-2 text-sm text-white/80">
+                <label className="flex items-center gap-2 text-sm text-[#586e75]">
                   Shadow
                   <input
                     type="checkbox"
                     checked={shadow}
                     onChange={(e) => setShadow(e.target.checked)}
                     data-no-drag
-                    className="h-4 w-4 accent-indigo-400"
+                    className="h-4 w-4 accent-[#268bd2]"
                   />
                 </label>
 
                 <button
                   onClick={copyCss}
                   data-no-drag
-                  className="rounded-md bg-indigo-600 px-3 py-1 text-sm font-medium text-white"
+                  className="rounded-md bg-[#268bd2] px-3 py-1 text-sm font-medium text-white"
                 >
                   {copied ? 'Copied' : 'Copy CSS'}
                 </button>
               </div>
 
-              <pre className="mt-1 overflow-auto rounded-md bg-black/30 px-3 py-2 text-xs text-white/80 h-24">{cssString}</pre>
+              <pre className="mt-1 overflow-auto rounded-md bg-[#fdf6e3] border border-[#93a1a1]/20 px-3 py-2 text-xs text-[#586e75] h-24">{cssString}</pre>
             </div>
           </div>
         </GlassPanel>
@@ -233,22 +237,22 @@ function ScrollDemo() {
       title: 'Light text on dark background',
       description:
         'Dark backgrounds make the glass feel more like frosted glass. Use this when you need strong contrast.',
-      bg: 'bg-gradient-to-br from-slate-950 via-indigo-950 to-rose-950',
-      textClass: 'text-white',
+      bg: 'bg-gradient-to-br from-[#eee8d5] via-[#fdf6e3] to-[#eee8d5]',
+      textClass: 'text-[#657b83]',
     },
     {
       title: 'Dark text on light background',
       description:
         'Light, soft backgrounds look great with a subtle glass tint and provide a clean aesthetic.',
-      bg: 'bg-gradient-to-br from-white/10 via-white/5 to-white/10',
-      textClass: 'text-slate-900',
+      bg: 'bg-gradient-to-br from-[#268bd2]/10 via-[#2aa198]/10 to-[#859900]/10',
+      textClass: 'text-[#586e75]',
     },
     {
       title: 'Colorful contrast',
       description:
         'Brighter colors show how blur and transparency blend with saturated hues.',
-      bg: 'bg-gradient-to-br from-pink-600 via-purple-600 to-indigo-600',
-      textClass: 'text-white',
+      bg: 'bg-gradient-to-br from-[#cb4b16]/20 via-[#d33682]/20 to-[#6c71c4]/20',
+      textClass: 'text-[#657b83]',
     },
   ]
 
@@ -265,16 +269,16 @@ function ScrollDemo() {
   return (
     <section>
       <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-semibold text-white">Scrolling background demo</h2>
-        <p className="text-sm text-white/70">
+        <h2 className="text-2xl font-semibold text-[#586e75]">Scrolling background demo</h2>
+        <p className="text-sm text-[#93a1a1]">
           Scroll inside the section to see the glass panel overlay different backgrounds and text contrast.
         </p>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-white/20 bg-white/5">
+      <div className="mt-6 rounded-2xl border border-[#93a1a1]/20 bg-[#eee8d5]">
         <div className="relative h-[820px] overflow-auto">
           <div className="flex items-center justify-between gap-3 sticky top-4 z-10 px-6 pt-4">
-            <h3 className="text-lg font-semibold text-white">Sticky glass overlay</h3>
+            <h3 className="text-lg font-semibold text-[#586e75]">Sticky glass overlay</h3>
           </div>
 
           <GlassPanel
@@ -286,26 +290,26 @@ function ScrollDemo() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-lg font-semibold text-white">Sticky glass overlay</h3>
-                <p className="text-sm text-white/70">
+                <h3 className="text-lg font-semibold text-[#586e75]">Sticky glass overlay</h3>
+                <p className="text-sm text-[#657b83]">
                   The glass panel stays fixed while the background content scrolls beneath it.
                 </p>
-                <p className="text-xs text-white/60">
+                <p className="text-xs text-[#93a1a1]">
                   This helps you see how the glass effect behaves with different contrasts and colors.
                 </p>
               </div>
 
               <div className="w-64 flex flex-col gap-2">
                 <div className="flex items-center gap-2">
-                  <label className="text-sm text-white/80">Variant</label>
+                  <label className="text-sm text-[#586e75]">Variant</label>
                   <select
                     value={variant}
                     onChange={(e) => setVariant(e.target.value as GlassVariant)}
                     data-no-drag
-                    className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-white outline-none text-sm w-32"
+                    className="rounded-lg border border-[#93a1a1]/20 bg-[#eee8d5] px-2 py-1 text-[#657b83] outline-none text-sm w-32"
                   >
                     {variants.map((v) => (
-                      <option key={v} value={v} className="bg-slate-900">
+                      <option key={v} value={v} className="bg-[#eee8d5] text-[#657b83]">
                         {v}
                       </option>
                     ))}
@@ -313,7 +317,7 @@ function ScrollDemo() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <label className="text-sm text-white/80">Tint</label>
+                  <label className="text-sm text-[#586e75]">Tint</label>
                   <input
                     type="color"
                     value={stickyTint}
@@ -324,7 +328,7 @@ function ScrollDemo() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <label className="text-sm text-white/80">Opacity</label>
+                  <label className="text-sm text-[#586e75]">Opacity</label>
                   <input
                     type="range"
                     min={0}
@@ -332,12 +336,12 @@ function ScrollDemo() {
                     value={Math.round(stickyTintOpacity * 100)}
                     onChange={(e) => setStickyTintOpacity(Number(e.target.value) / 100)}
                     data-no-drag
-                    className="h-2 w-28 accent-indigo-400"
+                    className="h-2 w-28 accent-[#268bd2]"
                   />
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <label className="text-sm text-white/80">Blur</label>
+                  <label className="text-sm text-[#586e75]">Blur</label>
                   <input
                     type="range"
                     min={0}
@@ -345,7 +349,7 @@ function ScrollDemo() {
                     value={stickyBlurPx}
                     onChange={(e) => setStickyBlurPx(Number(e.target.value))}
                     data-no-drag
-                    className="h-2 w-28 accent-indigo-400"
+                    className="h-2 w-28 accent-[#268bd2]"
                   />
                 </div>
               </div>
@@ -369,223 +373,6 @@ function ScrollDemo() {
         </div>
       </div>
     </section>
-  )
-}
-
-function DraggableGlass() {
-  const [variant, setVariant] = React.useState<GlassVariant>('frosted')
-  const [pos, setPos] = React.useState({ x: 32, y: 160 })
-  const dragging = React.useRef(false)
-  const offset = React.useRef({ x: 0, y: 0 })
-  const [tintColor, setTintColor] = React.useState<string>('#ffffff')
-  const [tintOpacity, setTintOpacity] = React.useState<number>(0.06)
-  const [blurPx, setBlurPx] = React.useState<number>(6)
-  const [radiusPx, setRadiusPx] = React.useState<number>(12)
-  const [shadow, setShadow] = React.useState<boolean>(true)
-
-  React.useEffect(() => {
-    function onMove(e: MouseEvent) {
-      if (!dragging.current) return
-      const clientX = e.clientX
-      const clientY = e.clientY
-      setPos(() => {
-        const left = Math.max(8, clientX - offset.current.x)
-        const top = Math.max(8, clientY - offset.current.y)
-        const vw = window.innerWidth
-        const vh = window.innerHeight
-        const clampedX = Math.min(left, vw - 220)
-        const clampedY = Math.min(top, vh - 80)
-        return { x: clampedX, y: clampedY }
-      })
-    }
-
-    function onTouchMove(e: TouchEvent) {
-      if (!dragging.current) return
-      // prevent scrolling while dragging
-      if (e.cancelable) e.preventDefault()
-      const t = (e.touches && e.touches[0]) || (e.changedTouches && e.changedTouches[0])
-      if (!t) return
-      const clientX = t.clientX
-      const clientY = t.clientY
-      setPos(() => {
-        const left = Math.max(8, clientX - offset.current.x)
-        const top = Math.max(8, clientY - offset.current.y)
-        const vw = window.innerWidth
-        const vh = window.innerHeight
-        const clampedX = Math.min(left, vw - 220)
-        const clampedY = Math.min(top, vh - 80)
-        return { x: clampedX, y: clampedY }
-      })
-    }
-    function onUp() {
-      dragging.current = false
-      document.body.style.userSelect = ''
-    }
-    window.addEventListener('mousemove', onMove)
-    window.addEventListener('mouseup', onUp)
-    // touch support (passive: false so we can preventDefault during move)
-    window.addEventListener('touchmove', onTouchMove, { passive: false })
-    window.addEventListener('touchend', onUp)
-    return () => {
-      window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('mouseup', onUp)
-      window.removeEventListener('touchmove', onTouchMove as EventListener)
-      window.removeEventListener('touchend', onUp)
-    }
-  }, [])
-
-  function startDrag(e: React.MouseEvent) {
-    dragging.current = true
-    offset.current = { x: e.clientX - pos.x, y: e.clientY - pos.y }
-    document.body.style.userSelect = 'none'
-  }
-
-  function startDragTouch(e: React.TouchEvent) {
-    // prevent page from scrolling while initiating drag
-    e.preventDefault()
-    dragging.current = true
-    const t = e.touches && e.touches[0]
-    if (!t) return
-    offset.current = { x: t.clientX - pos.x, y: t.clientY - pos.y }
-    document.body.style.userSelect = 'none'
-  }
-
-  function reset() {
-    setPos({ x: 32, y: 160 })
-  }
-
-  function isInteractiveTarget(target: EventTarget | null) {
-    if (!(target instanceof HTMLElement)) return false
-    // interactive elements: inputs, selects, textareas, buttons, links, labels
-    const interactive = target.closest('input,select,textarea,button,a,label,[data-no-drag]')
-    return !!interactive
-  }
-
-  function startDragIfAllowed(e: React.MouseEvent | React.TouchEvent) {
-    const target = (e as any).target as EventTarget
-    if (isInteractiveTarget(target)) return
-    // handle mouse or touch start
-    if ('touches' in e) startDragTouch(e as React.TouchEvent)
-    else startDrag(e as React.MouseEvent)
-  }
-
-  return (
-    <div
-      style={{ left: pos.x, top: pos.y }}
-      className="fixed z-50 w-72 cursor-grab"
-      onMouseDown={startDragIfAllowed}
-      onTouchStart={startDragIfAllowed}
-    >
-      <GlassPanel
-        variant={variant}
-        tint={tintColor}
-        tintOpacity={tintOpacity}
-        blur={blurPx}
-        style={{ borderRadius: `${radiusPx}px`, boxShadow: shadow ? '0 10px 30px rgba(2,6,23,0.6)' : 'none' }}
-        className="p-0"
-      >
-        <div className="p-3">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-white">
-              <strong className="block text-xs">Drag this panel</strong>
-              <span className="block text-xs text-white/70">Tap and drag anywhere (controls are interactive)</span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <select
-                value={variant}
-                onChange={(e) => setVariant(e.target.value as GlassVariant)}
-                data-no-drag
-                className="rounded bg-white/10 px-2 py-1 text-sm text-white"
-              >
-                {variants.map((v) => (
-                  <option key={v} value={v} className="bg-slate-900 text-black">
-                    {v}
-                  </option>
-                ))}
-              </select>
-              <button
-                onClick={reset}
-                data-no-drag
-                className="ml-2 rounded bg-white/10 px-2 py-1 text-xs text-white/80"
-              >
-                Reset
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-3 flex items-center gap-3">
-            <label className="flex items-center gap-2 text-sm text-white/80">
-              Tint
-              <input
-                type="color"
-                value={tintColor}
-                onChange={(e) => setTintColor(e.target.value)}
-                data-no-drag
-                className="w-8 h-8 rounded-md border border-white/12 p-0"
-              />
-            </label>
-
-            <label className="flex items-center gap-2 text-sm text-white/80">
-              Opacity
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={Math.round(tintOpacity * 100)}
-                onChange={(e) => setTintOpacity(Number(e.target.value) / 100)}
-                data-no-drag
-                className="h-2 w-24 accent-indigo-400"
-              />
-            </label>
-
-            <label className="flex items-center gap-2 text-sm text-white/80">
-              Blur
-              <input
-                type="range"
-                min={0}
-                max={40}
-                value={blurPx}
-                onChange={(e) => setBlurPx(Number(e.target.value))}
-                data-no-drag
-                className="h-2 w-24 accent-indigo-400"
-              />
-            </label>
-
-            <label className="flex items-center gap-2 text-sm text-white/80">
-              Radius
-              <input
-                type="range"
-                min={0}
-                max={48}
-                value={radiusPx}
-                onChange={(e) => setRadiusPx(Number(e.target.value))}
-                data-no-drag
-                className="h-2 w-24 accent-indigo-400"
-              />
-            </label>
-
-            <label className="flex items-center gap-2 text-sm text-white/80">
-              Shadow
-              <input
-                type="checkbox"
-                checked={shadow}
-                onChange={(e) => setShadow(e.target.checked)}
-                data-no-drag
-                className="h-4 w-4 accent-indigo-400"
-              />
-            </label>
-          </div>
-
-          <div className="mt-3">
-            <div className="text-sm text-white">
-              <strong className="block">Movable Glass</strong>
-              <span className="block text-xs text-white/70">Drag this panel anywhere on the page.</span>
-            </div>
-          </div>
-        </div>
-      </GlassPanel>
-    </div>
   )
 }
 

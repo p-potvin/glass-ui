@@ -1,12 +1,12 @@
 import React from 'react'
 
 export type GlassVariant =
+  | 'liquid'
+  | 'vibrant'
+  | 'solarized-frosted'
   | 'frosted'
   | 'clear'
-  | 'tinted'
-  | 'ultra-clear'
   | 'subtle'
-  | 'soft-tint'
 
 export interface GlassPanelProps {
   /** Visual style of the glass effect */
@@ -38,16 +38,12 @@ export const GlassPanel: React.FC<GlassPanelProps> = ({
   style,
 }) => {
   const variantClasses: Record<GlassVariant, string> = {
-    // slightly stronger frosted look (but moderate opacity)
-    frosted: 'bg-white/18 backdrop-blur-sm border border-white/20 shadow-lg',
-    // very clear, almost transparent with minimal blur
-    'ultra-clear': 'bg-white/5 backdrop-blur-sm border border-white/10 shadow-sm',
-    // subtle glass: low opacity, minimal blur, almost invisible
-    subtle: 'bg-white/6 backdrop-blur-[1px] border border-white/8 shadow-none',
-    // soft tint variant with low opacity
-    'soft-tint': 'bg-pink-400/8 backdrop-blur-sm border border-pink-200/20 shadow-sm',
-    clear: 'bg-white/8 backdrop-blur-sm border border-white/12 shadow-sm',
-    tinted: 'bg-blue-500/12 backdrop-blur-sm border border-blue-300/20 shadow-md',
+    liquid: 'bg-white/10 backdrop-blur-md border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.1)]',
+    vibrant: 'bg-gradient-to-br from-[#268bd2]/20 to-[#d33682]/20 backdrop-blur-md border border-white/40 shadow-lg',
+    'solarized-frosted': 'bg-[#eee8d5]/40 backdrop-blur-md border border-[#93a1a1]/20 shadow-sm',
+    frosted: 'bg-white/40 backdrop-blur-md border border-white/50 shadow-md',
+    clear: 'bg-white/10 backdrop-blur-sm border border-white/20 shadow-sm',
+    subtle: 'bg-white/5 backdrop-blur-[2px] border border-white/10 shadow-none',
   }
 
   // helper: convert #rrggbb to rgba(...) with provided alpha
