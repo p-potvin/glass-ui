@@ -1,12 +1,14 @@
+/// <reference types="@react-three/fiber" />
 import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
+import type { RootState } from '@react-three/fiber'
 import { MeshTransmissionMaterial, Environment, RoundedBox, Float } from '@react-three/drei'
 import * as THREE from 'three'
 
 function LiquidShape() {
   const meshRef = useRef<THREE.Mesh>(null)
 
-  useFrame((state) => {
+  useFrame((state: RootState) => {
     if (meshRef.current) {
       meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.2
       meshRef.current.rotation.y += 0.01
