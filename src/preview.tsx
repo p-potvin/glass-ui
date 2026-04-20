@@ -14,6 +14,40 @@ const variants: GlassVariant[] = [
   'subtle',
 ]
 
+/** Distinct background per variant so the glass differences are actually visible */
+const variantBackgrounds: Record<GlassVariant, string> = {
+  liquid:
+    'bg-gradient-to-br from-[#073642] via-[#002b36] to-[#586e75]',
+  vibrant:
+    'bg-gradient-to-br from-[#268bd2] via-[#6c71c4] to-[#d33682]',
+  'solarized-frosted':
+    'bg-gradient-to-br from-[#eee8d5] via-[#fdf6e3] to-[#93a1a1]',
+  frosted:
+    'bg-gradient-to-br from-[#586e75] via-[#839496] to-[#93a1a1]',
+  clear:
+    'bg-gradient-to-br from-[#002b36] via-[#073642] to-[#2aa198]',
+  subtle:
+    'bg-gradient-to-br from-[#073642] via-[#002b36] to-[#073642]',
+}
+
+const variantTextColor: Record<GlassVariant, string> = {
+  liquid: 'text-[#fdf6e3]',
+  vibrant: 'text-white',
+  'solarized-frosted': 'text-[#586e75]',
+  frosted: 'text-white',
+  clear: 'text-[#93a1a1]',
+  subtle: 'text-[#839496]',
+}
+
+const variantDescriptions: Record<GlassVariant, string> = {
+  liquid: 'Deep transparent layer with soft glow — use over dark imagery.',
+  vibrant: 'Colour-shifted gradient blur — bold accent for hero sections.',
+  'solarized-frosted': 'Warm frosted pane tuned for the Solarized Light palette.',
+  frosted: 'Classic heavy blur — works on mid-tone or photographic backgrounds.',
+  clear: 'Barely-there tint with light blur — keeps content highly readable.',
+  subtle: 'Almost invisible 2 px blur — useful for layered depth without obstruction.',
+}
+
 function Preview() {
   return (
     <main className="min-h-screen px-6 py-12 text-[#657b83]">
@@ -22,48 +56,70 @@ function Preview() {
           glass-ui preview
         </h1>
         <p className="mt-4 text-lg text-[#93a1a1]">
-          A quick preview of the supported glass variants. Change the selection to see how the glass
-          effect updates.
+          Explore every glass style side-by-side. Each card uses a background
+          chosen to highlight the unique effect of that variant.
         </p>
       </header>
 
-      <section className="mx-auto mt-12 flex max-w-5xl flex-col gap-8">
-        <LiquidGlassEffect />
+      <section className="mx-auto mt-12 flex max-w-5xl flex-col gap-12">
+        {/* ── WebGL Liquid Glass ────────────────────────────── */}
+        <div>
+          <h2 className="text-2xl font-semibold text-[#586e75]">Liquid Glass (WebGL)</h2>
+          <p className="mt-1 text-sm text-[#93a1a1]">
+            Real-time refractive glass rendered with React Three Fiber. Hover to
+            see the slab warp the backdrop orbs through chromatic aberration.
+          </p>
+          <div className="mt-4">
+            <LiquidGlassEffect />
+          </div>
+        </div>
 
+        {/* ── CSS Variant Grid ──────────────────────────────── */}
+        <div>
+          <h2 className="text-2xl font-semibold text-[#586e75]">CSS Variants</h2>
+          <p className="mt-1 text-sm text-[#93a1a1]">
+            Pure CSS glassmorphism via <code className="rounded bg-[#eee8d5] px-1 py-0.5">GlassPanel</code>.
+            Each card sits on a tailored backdrop so you can see the actual difference.
+          </p>
+
+          <div className="mt-4 grid gap-6 lg:grid-cols-3">
+            {variants.map((variant) => (
+              <div
+                key={variant}
+                className={`rounded-2xl p-3 ${variantBackgrounds[variant]}`}
+              >
+                <GlassPanel variant={variant} className="h-52 p-5">
+                  <div className="flex h-full flex-col justify-between">
+                    <div>
+                      <h3 className={`text-lg font-semibold ${variantTextColor[variant]}`}>
+                        {variant}
+                      </h3>
+                      <p className={`mt-2 text-sm ${variantTextColor[variant]} opacity-80`}>
+                        {variantDescriptions[variant]}
+                      </p>
+                    </div>
+                    <p className={`text-xs ${variantTextColor[variant]} opacity-50`}>
+                      variant=&quot;{variant}&quot;
+                    </p>
+                  </div>
+                </GlassPanel>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Interactive Designer ──────────────────────────── */}
         <GlassExample />
 
+        {/* ── Scroll Demo ──────────────────────────────────── */}
         <ScrollDemo />
-
-        <div className="grid gap-6 lg:grid-cols-3">
-          {variants.map((variant) => (
-            <GlassPanel
-              key={variant}
-              variant={variant}
-              className="h-56 p-6"
-            >
-              <div className="flex h-full flex-col justify-between">
-                <div>
-                  <h2 className="text-xl font-semibold text-[#586e75]">{variant}</h2>
-                  <p className="mt-2 text-sm text-[#657b83]">
-                    Example of the <span className="font-medium">{variant}</span> glass style.
-                  </p>
-                </div>
-
-                <p className="text-xs text-[#93a1a1]">
-                  Imported from <code className="rounded bg-[#eee8d5] px-1 py-0.5">GlassPanel</code>
-                </p>
-              </div>
-            </GlassPanel>
-          ))}
-        </div>
 
         <footer className="mx-auto max-w-5xl rounded-2xl bg-[#eee8d5] p-6 text-sm text-[#657b83]">
           <p>
-            This preview page is stored in <code className="rounded bg-[#fdf6e3] px-1 py-0.5">index.html</code> and
+            Preview source:{' '}
+            <code className="rounded bg-[#fdf6e3] px-1 py-0.5">index.html</code> +{' '}
             <code className="rounded bg-[#fdf6e3] px-1 py-0.5">src/preview.tsx</code>.
-          </p>
-          <p className="mt-2">
-            To deploy this preview site, read the instructions in <code className="rounded bg-[#fdf6e3] px-1 py-0.5">README.md</code>.
+            See <code className="rounded bg-[#fdf6e3] px-1 py-0.5">README.md</code> for build &amp; deploy instructions.
           </p>
         </footer>
       </section>
@@ -232,34 +288,29 @@ function GlassExample() {
 }
 
 function ScrollDemo() {
-  const baseBlocks = [
+  const blocks = [
     {
-      title: 'Light text on dark background',
+      title: 'Dark backdrop',
       description:
-        'Dark backgrounds make the glass feel more like frosted glass. Use this when you need strong contrast.',
-      bg: 'bg-gradient-to-br from-[#eee8d5] via-[#fdf6e3] to-[#eee8d5]',
-      textClass: 'text-[#657b83]',
+        'Deep solarized tones show how the glass blur softens strong contrast while keeping text legible.',
+      bg: 'bg-gradient-to-br from-[#002b36] via-[#073642] to-[#586e75]',
+      textClass: 'text-[#93a1a1]',
     },
     {
-      title: 'Dark text on light background',
+      title: 'Warm accent backdrop',
       description:
-        'Light, soft backgrounds look great with a subtle glass tint and provide a clean aesthetic.',
-      bg: 'bg-gradient-to-br from-[#268bd2]/10 via-[#2aa198]/10 to-[#859900]/10',
+        'Orange and magenta hues bleed through the glass tint, demonstrating colour interaction.',
+      bg: 'bg-gradient-to-br from-[#cb4b16]/40 via-[#d33682]/30 to-[#6c71c4]/30',
       textClass: 'text-[#586e75]',
     },
     {
-      title: 'Colorful contrast',
+      title: 'Cool accent backdrop',
       description:
-        'Brighter colors show how blur and transparency blend with saturated hues.',
-      bg: 'bg-gradient-to-br from-[#cb4b16]/20 via-[#d33682]/20 to-[#6c71c4]/20',
-      textClass: 'text-[#657b83]',
+        'Cyan and green tones paired with a light base let the glass effect stay airy.',
+      bg: 'bg-gradient-to-br from-[#268bd2]/20 via-[#2aa198]/20 to-[#859900]/20',
+      textClass: 'text-[#586e75]',
     },
   ]
-
-  // repeat blocks to create a longer scrollable area
-  const longBlocks = Array.from({ length: 6 }).flatMap((_, i) =>
-    baseBlocks.map((b, j) => ({ ...b, id: `${i}-${j}` }))
-  )
 
   const [variant, setVariant] = React.useState<GlassVariant>('frosted')
   const [stickyTint, setStickyTint] = React.useState<string>('#ffffff')
@@ -268,105 +319,68 @@ function ScrollDemo() {
 
   return (
     <section>
-      <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-semibold text-[#586e75]">Scrolling background demo</h2>
-        <p className="text-sm text-[#93a1a1]">
-          Scroll inside the section to see the glass panel overlay different backgrounds and text contrast.
-        </p>
-      </div>
+      <h2 className="text-2xl font-semibold text-[#586e75]">Scroll overlay demo</h2>
+      <p className="mt-1 text-sm text-[#93a1a1]">
+        The sticky glass panel stays fixed while the coloured blocks scroll
+        beneath it — watch the blur adapt to each backdrop.
+      </p>
 
-      <div className="mt-6 rounded-2xl border border-[#93a1a1]/20 bg-[#eee8d5]">
-        <div className="relative h-[820px] overflow-auto">
-          <div className="flex items-center justify-between gap-3 sticky top-4 z-10 px-6 pt-4">
-            <h3 className="text-lg font-semibold text-[#586e75]">Sticky glass overlay</h3>
-          </div>
-
+      <div className="mt-4 rounded-2xl border border-[#93a1a1]/20 bg-[#eee8d5]">
+        <div className="relative h-[600px] overflow-auto">
           <GlassPanel
             variant={variant}
             tint={stickyTint}
             tintOpacity={stickyTintOpacity}
             blur={stickyBlurPx}
-            className="sticky top-20 mx-6 mb-6 p-4 shadow-xl"
+            className="sticky top-4 mx-4 mt-4 z-10 p-4 shadow-xl"
           >
-            <div className="flex items-start justify-between gap-4">
-              <div>
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+              <div className="min-w-[180px]">
                 <h3 className="text-lg font-semibold text-[#586e75]">Sticky glass overlay</h3>
                 <p className="text-sm text-[#657b83]">
-                  The glass panel stays fixed while the background content scrolls beneath it.
-                </p>
-                <p className="text-xs text-[#93a1a1]">
-                  This helps you see how the glass effect behaves with different contrasts and colors.
+                  Scroll down to see the effect over each coloured backdrop.
                 </p>
               </div>
 
-              <div className="w-64 flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
-                  <label className="text-sm text-[#586e75]">Variant</label>
+                  <label className="text-xs text-[#586e75] w-12">Variant</label>
                   <select
                     value={variant}
                     onChange={(e) => setVariant(e.target.value as GlassVariant)}
-                    data-no-drag
-                    className="rounded-lg border border-[#93a1a1]/20 bg-[#eee8d5] px-2 py-1 text-[#657b83] outline-none text-sm w-32"
+                    className="rounded-lg border border-[#93a1a1]/20 bg-[#eee8d5] px-2 py-1 text-[#657b83] outline-none text-sm w-36"
                   >
                     {variants.map((v) => (
-                      <option key={v} value={v} className="bg-[#eee8d5] text-[#657b83]">
-                        {v}
-                      </option>
+                      <option key={v} value={v}>{v}</option>
                     ))}
                   </select>
                 </div>
-
                 <div className="flex items-center gap-2">
-                  <label className="text-sm text-[#586e75]">Tint</label>
-                  <input
-                    type="color"
-                    value={stickyTint}
-                    onChange={(e) => setStickyTint(e.target.value)}
-                    data-no-drag
-                    className="w-8 h-8 rounded-md border border-white/12 p-0"
-                  />
+                  <label className="text-xs text-[#586e75] w-12">Tint</label>
+                  <input type="color" value={stickyTint} onChange={(e) => setStickyTint(e.target.value)} className="w-8 h-8 rounded-md border border-[#93a1a1]/20 p-0" />
                 </div>
-
                 <div className="flex items-center gap-2">
-                  <label className="text-sm text-[#586e75]">Opacity</label>
-                  <input
-                    type="range"
-                    min={0}
-                    max={100}
-                    value={Math.round(stickyTintOpacity * 100)}
-                    onChange={(e) => setStickyTintOpacity(Number(e.target.value) / 100)}
-                    data-no-drag
-                    className="h-2 w-28 accent-[#268bd2]"
-                  />
+                  <label className="text-xs text-[#586e75] w-12">Opacity</label>
+                  <input type="range" min={0} max={100} value={Math.round(stickyTintOpacity * 100)} onChange={(e) => setStickyTintOpacity(Number(e.target.value) / 100)} className="h-2 w-24 accent-[#268bd2]" />
+                  <span className="text-xs text-[#657b83] w-8">{Math.round(stickyTintOpacity * 100)}%</span>
                 </div>
-
                 <div className="flex items-center gap-2">
-                  <label className="text-sm text-[#586e75]">Blur</label>
-                  <input
-                    type="range"
-                    min={0}
-                    max={40}
-                    value={stickyBlurPx}
-                    onChange={(e) => setStickyBlurPx(Number(e.target.value))}
-                    data-no-drag
-                    className="h-2 w-28 accent-[#268bd2]"
-                  />
+                  <label className="text-xs text-[#586e75] w-12">Blur</label>
+                  <input type="range" min={0} max={40} value={stickyBlurPx} onChange={(e) => setStickyBlurPx(Number(e.target.value))} className="h-2 w-24 accent-[#268bd2]" />
+                  <span className="text-xs text-[#657b83] w-8">{stickyBlurPx}px</span>
                 </div>
               </div>
             </div>
           </GlassPanel>
 
-          <div className="space-y-6 px-6 pb-12 pt-44">
-            {longBlocks.map((block) => (
+          <div className="space-y-6 px-4 pb-8 pt-6">
+            {blocks.map((block, i) => (
               <div
-                key={block.id}
-                className={`rounded-2xl p-8 shadow-inner ${block.bg} ${block.textClass} min-h-[320px]`}
+                key={i}
+                className={`rounded-2xl p-8 ${block.bg} ${block.textClass} min-h-[280px] flex flex-col justify-center`}
               >
-                <h4 className="text-2xl font-semibold text-current">{block.title}</h4>
-                <p className="mt-3 text-base text-current/85">{block.description}</p>
-                <p className="mt-6 text-sm text-current/70">
-                  Scroll further to see the glass effect adapt to new backgrounds.
-                </p>
+                <h4 className="text-2xl font-semibold">{block.title}</h4>
+                <p className="mt-3 text-base opacity-85">{block.description}</p>
               </div>
             ))}
           </div>

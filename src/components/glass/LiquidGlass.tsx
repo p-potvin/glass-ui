@@ -55,11 +55,11 @@ function FloatingOrbs() {
 
 export const LiquidGlassEffect = () => {
   return (
-    <div className="w-full h-96 relative overflow-hidden rounded-2xl bg-[#eee8d5] border border-[#93a1a1]/20 shadow-inner flex items-center justify-center">
+    <div className="w-full h-96 relative overflow-hidden rounded-2xl bg-[#eee8d5] border border-[#93a1a1]/20 shadow-inner">
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
         <h2 className="text-6xl font-bold text-[#93a1a1] opacity-20 select-none">iOS 26 Liquid</h2>
       </div>
-      <div className="absolute inset-0 z-10 pointer-events-none">
+      <div className="absolute inset-0 z-10">
         <Canvas camera={{ position: [0, 0, 4] }}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 10]} intensity={1} />
