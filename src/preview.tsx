@@ -61,7 +61,7 @@ function Preview() {
           vault-flows
         </h1>
         <p className="mt-2 text-sm font-medium text-[#268bd2]">
-          AI Workflow GUI &amp; Local Runtime Bridge · Part of the{' '}
+          AI Workflow GUI & Local Runtime Bridge · Part of the{' '}
           <a href="https://vaultwares.com" className="underline hover:opacity-80">VaultWares Ecosystem</a>
         </p>
         <p className="mt-4 text-lg text-[#93a1a1]">

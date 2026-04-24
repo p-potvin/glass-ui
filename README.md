@@ -2,7 +2,7 @@
 
 # vault-flows
 
-**AI Workflow GUI &amp; Local Runtime Bridge**  
+**AI Workflow GUI & Local Runtime Bridge**  
 **Part of the VaultWares Ecosystem** • <a href="https://docs.vaultwares.com">docs.vaultwares.com</a> • <a href="https://vaultwares.com">vaultwares.com</a>
 
 **Frontend web app (Vite + React) that provides a beautiful GUI for creating, managing, and executing AI model workflows from vaultwares-pipelines (image enhancements, multi-modal models, conversational AI, digital twins, LoRA training, I2V/T2V, etc.). Includes local runtime bridge for ComfyUI/FaceFusion scanning and execution.**
@@ -35,7 +35,7 @@ For local bridge (ComfyUI + FaceFusion):
 npm run bridge:local
 ```
 
-## Architecture &amp; Agent Integration
+## Architecture & Agent Integration
 Fully synchronized with the VaultWares Agent Knowledge Dissemination System.
 - Agents automatically pull latest branding and guidelines from: → https://raw.githubusercontent.com/p-potvin/vaultwares-docs/main/agents/knowledge-dissemination.mdx
 - Python Redis agents in agents/ and vaultwares-agentciation submodule coordinate workflows.
@@ -44,7 +44,7 @@ Fully synchronized with the VaultWares Agent Knowledge Dissemination System.
 ## Environment Variables
 - `VITE_API_URL` → leave empty for local demo/fallback mode
 
-## Privacy &amp; Security
+## Privacy & Security
 - Local-first by default
 - No telemetry or external tracking
 - Encrypted local storage options
