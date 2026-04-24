@@ -52,9 +52,18 @@ function Preview() {
   return (
     <main className="min-h-screen px-6 py-12 text-[#657b83]">
       <header className="mx-auto max-w-5xl text-center">
+        <img
+          src="https://raw.githubusercontent.com/p-potvin/vaultwares-docs/main/logo/vaultwares-logo.svg"
+          alt="VaultWares"
+          className="mx-auto mb-4 h-12"
+        />
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl text-[#586e75]">
-          glass-ui preview
+          vault-flows
         </h1>
+        <p className="mt-2 text-sm font-medium text-[#268bd2]">
+          AI Workflow GUI &amp; Local Runtime Bridge · Part of the{' '}
+          <a href="https://vaultwares.com" className="underline hover:opacity-80">VaultWares Ecosystem</a>
+        </p>
         <p className="mt-4 text-lg text-[#93a1a1]">
           Explore every glass style side-by-side. Each card uses a background
           chosen to highlight the unique effect of that variant.

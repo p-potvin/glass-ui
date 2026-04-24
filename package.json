@@ -1,7 +1,7 @@
 {
-  "name": "glass-ui",
-  "version": "0.1.0",
-  "description": "A Glass Rendering engine for all your Web Apps (React.js/Tailwind). Supports multiple glass styles and easily customizable!",
+  "name": "vault-flows",
+  "version": "1.0.0",
+  "description": "VaultWares AI Workflow GUI + local runtime bridge for multimodal pipelines",
   "type": "module",
   "main": "dist/glass-ui.umd.cjs",
   "module": "dist/glass-ui.js",
@@ -24,14 +24,21 @@
     "typecheck": "tsc --noEmit"
   },
   "keywords": [
-    "glass",
-    "glassmorphism",
-    "ui",
-    "react",
-    "tailwind",
-    "components"
+    "vaultwares",
+    "ai-workflows",
+    "react-gui",
+    "vite",
+    "local-ai",
+    "comfyui-bridge",
+    "privacy-first"
   ],
-  "license": "Apache-2.0",
+  "author": "VaultWares",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/p-potvin/vault-flows",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p-potvin/vault-flows.git"
+  },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
