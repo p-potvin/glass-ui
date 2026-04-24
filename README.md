@@ -1,94 +1,59 @@
-# glass-ui
+<img src="https://raw.githubusercontent.com/p-potvin/vaultwares-docs/main/logo/vaultwares-logo.svg">
 
-A Glass Rendering engine for all your Web Apps (React.js/Tailwind). Supports multiple glass styles and is easily customizable.
+# vault-flows
 
-## Components
+**AI Workflow GUI & Local Runtime Bridge**  
+**Part of the VaultWares Ecosystem** • <a href="https://docs.vaultwares.com">docs.vaultwares.com</a> • <a href="https://vaultwares.com">vaultwares.com</a>
 
-### `GlassPanel`
+**Frontend web app (Vite + React) that provides a beautiful GUI for creating, managing, and executing AI model workflows from vaultwares-pipelines (image enhancements, multi-modal models, conversational AI, digital twins, LoRA training, I2V/T2V, etc.). Includes local runtime bridge for ComfyUI/FaceFusion scanning and execution.**
 
-A flexible panel with customizable glassmorphism effects.
+Live demo: https://vault-flows.vercel.app
 
-**Variants:** `liquid` | `vibrant` | `solarized-frosted` | `frosted` | `clear` | `subtle`
+## Features
+- Drag-and-drop workflow builder with real-time preview
+- Local-first execution mode (no backend required for demos)
+- Local runtime bridge for scanning ComfyUI models and running FaceFusion flows
+- Multi-agent coordination prototype (Redis-based)
+- Full sub-module integration (vault-themes, vaultwares-agentciation, facefusion)
+- Vercel deployment ready + local HTTPS dev scripts
+- Playwright E2E tests + linting
 
-```tsx
-import { GlassPanel } from 'glass-ui'
-
-<GlassPanel variant="frosted" tint="#7c3aed" tintOpacity={0.12} blur={10}>
-  Your content here
-</GlassPanel>
-```
-
-| Prop | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
-| `variant` | `GlassVariant` | `'frosted'` | Visual style preset |
-| `className` | `string` | `''` | Additional Tailwind classes |
-| `tint` | `string` | — | Hex or CSS color override for the background |
-| `tintOpacity` | `number` | `0.08` | Opacity applied when `tint` is a hex value |
-| `blur` | `number` | — | Backdrop blur in px (overrides variant default) |
-| `style` | `CSSProperties` | — | Inline styles merged last |
-
----
-
-### `LiquidGlassEffect`
-
-A 3-D liquid glass panel powered by **React Three Fiber** and **@react-three/drei**. Renders a transmissive, refractive rounded slab floating above coloured backdrop orbs — inspired by the iOS 26 liquid-glass aesthetic.
-
-> **Peer dependencies:** `@react-three/fiber`, `@react-three/drei`, `three` must be installed in the consuming project.
+## Quick Start
 
 ```bash
-npm install @react-three/fiber @react-three/drei three
-```
-
-```tsx
-import { LiquidGlassEffect } from 'glass-ui'
-
-<LiquidGlassEffect />
-```
-
-The component is self-contained (no props required) and fills the width of its parent with a fixed `h-96` height. It sets up its own `Canvas`, lighting, environment map, and animated geometry internally.
-
-**Key material properties (`MeshTransmissionMaterial`):**
-
-| Property | Value | Effect |
-| -------- | ----- | ------ |
-| `transmission` | `1` | Fully transmissive (glass-like) |
-| `ior` | `1.4` | Index of refraction (similar to glass) |
-| `chromaticAberration` | `0.05` | Subtle rainbow fringing at edges |
-| `distortion` | `0.2` | Warps background seen through the slab |
-| `roughness` | `0.05` | Near-perfect specular highlight |
-| `temporalDistortion` | `0.1` | Animates the distortion over time |
-
----
-
-## 📦 Preview the glass effects
-
-A small preview app is included to explore the supported glass variants.
-
-```bash
+git clone https://github.com/p-potvin/vault-flows.git
+cd vault-flows
+git submodule update --init --recursive
 npm install
+cp .env.example .env
 npm run dev
 ```
 
-Then open <http://localhost:5173> in your browser.
+For local bridge (ComfyUI + FaceFusion):
 
-## 🚀 Deploy the preview to GitHub Pages
+```bash
+npm run bridge:local
+```
 
-This repo includes a simple static preview site built into the `docs/` folder.
+## Architecture & Agent Integration
+Fully synchronized with the VaultWares Agent Knowledge Dissemination System.
+- Agents automatically pull latest branding and guidelines from: → https://raw.githubusercontent.com/p-potvin/vaultwares-docs/main/agents/knowledge-dissemination.mdx
+- Python Redis agents in agents/ and vaultwares-agentciation submodule coordinate workflows.
+- See full details: [Agent Knowledge System](https://raw.githubusercontent.com/p-potvin/vaultwares-docs/main/agents/knowledge-dissemination.mdx)
 
-1. Build the preview site:
+## Environment Variables
+- `VITE_API_URL` → leave empty for local demo/fallback mode
 
-   ```bash
-   npm run build:preview
-   ```
+## Privacy & Security
+- Local-first by default
+- No telemetry or external tracking
+- Encrypted local storage options
+- Full threat model in central VaultWares docs
 
-2. Commit and push the generated `docs/` folder:
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) and the central [Brand Guidelines](https://raw.githubusercontent.com/p-potvin/vaultwares-docs/main/agents/branding.mdx).
 
-   ```bash
-   git add docs
-   git commit -m "Deploy preview site"
-   git push
-   ```
+## License
+GPL-3.0 (see [LICENSE](LICENSE))
 
-3. In the GitHub repo settings, enable Pages and select the `main` branch + `/docs` folder as the source.
-
-> ✅ Tip: If you want to deploy to a project page (e.g. `https://<user>.github.io/<repo>/`), the site is already built with relative URLs (`base = './'`), so it should work without extra configuration.
+Built with ❤️ for privacy
