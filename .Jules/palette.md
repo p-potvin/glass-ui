@@ -1,0 +1,3 @@
+## 2025-01-01 - Form Label Associations in Interactive Property Panels
+**Learning:** In interactive tool panels (like visual designers), developers often use visual grouping (text next to a slider or input) without providing proper semantic labels. This makes the controls completely invisible to screen readers, which cannot associate the visual context with the interactive element.
+**Action:** Always ensure that every interactive input (`<select>`, `<input type="color">`, `<input type="range">`, etc.) has either a semantic `<label htmlFor="...">` referencing its `id`, or a descriptive `aria-label` when visually hidden or icon-only.

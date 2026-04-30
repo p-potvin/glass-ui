@@ -203,6 +203,7 @@ function GlassExample() {
             <div className="w-64 flex flex-col gap-2">
               <div className="flex items-center justify-between gap-2">
                 <select
+                  aria-label="Variant"
                   value={variant}
                   onChange={(e) => setVariant(e.target.value as GlassVariant)}
                   data-no-drag
@@ -216,6 +217,7 @@ function GlassExample() {
                 </select>
 
                 <input
+                  aria-label="Tint Color"
                   type="color"
                   value={tintColor}
                   onChange={(e) => setTintColor(e.target.value)}
@@ -225,8 +227,9 @@ function GlassExample() {
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="text-xs text-[#586e75]">Opacity</div>
+                <label htmlFor="glass-opacity" className="text-xs text-[#586e75]">Opacity</label>
                 <input
+                  id="glass-opacity"
                   type="range"
                   min={0}
                   max={100}
@@ -239,8 +242,9 @@ function GlassExample() {
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="text-xs text-[#586e75]">Blur</div>
+                <label htmlFor="glass-blur" className="text-xs text-[#586e75]">Blur</label>
                 <input
+                  id="glass-blur"
                   type="range"
                   min={0}
                   max={40}
@@ -253,8 +257,9 @@ function GlassExample() {
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="text-xs text-[#586e75]">Radius</div>
+                <label htmlFor="glass-radius" className="text-xs text-[#586e75]">Radius</label>
                 <input
+                  id="glass-radius"
                   type="range"
                   min={0}
                   max={48}
@@ -281,7 +286,7 @@ function GlassExample() {
                 <button
                   onClick={copyCss}
                   data-no-drag
-                  className="rounded-md bg-[#268bd2] px-3 py-1 text-sm font-medium text-white"
+                  className="rounded-md bg-[#268bd2] px-3 py-1 text-sm font-medium text-white hover:bg-[#207bba] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#268bd2] transition-colors"
                 >
                   {copied ? 'Copied' : 'Copy CSS'}
                 </button>
@@ -353,8 +358,9 @@ function ScrollDemo() {
 
               <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
-                  <label className="text-xs text-[#586e75] w-12">Variant</label>
+                  <label htmlFor="sticky-variant" className="text-xs text-[#586e75] w-12">Variant</label>
                   <select
+                    id="sticky-variant"
                     value={variant}
                     onChange={(e) => setVariant(e.target.value as GlassVariant)}
                     className="rounded-lg border border-[#93a1a1]/20 bg-[#eee8d5] px-2 py-1 text-[#657b83] outline-none text-sm w-36"
@@ -365,17 +371,17 @@ function ScrollDemo() {
                   </select>
                 </div>
                 <div className="flex items-center gap-2">
-                  <label className="text-xs text-[#586e75] w-12">Tint</label>
-                  <input type="color" value={stickyTint} onChange={(e) => setStickyTint(e.target.value)} className="w-8 h-8 rounded-md border border-[#93a1a1]/20 p-0" />
+                  <label htmlFor="sticky-tint" className="text-xs text-[#586e75] w-12">Tint</label>
+                  <input id="sticky-tint" type="color" value={stickyTint} onChange={(e) => setStickyTint(e.target.value)} className="w-8 h-8 rounded-md border border-[#93a1a1]/20 p-0" />
                 </div>
                 <div className="flex items-center gap-2">
-                  <label className="text-xs text-[#586e75] w-12">Opacity</label>
-                  <input type="range" min={0} max={100} value={Math.round(stickyTintOpacity * 100)} onChange={(e) => setStickyTintOpacity(Number(e.target.value) / 100)} className="h-2 w-24 accent-[#268bd2]" />
+                  <label htmlFor="sticky-opacity" className="text-xs text-[#586e75] w-12">Opacity</label>
+                  <input id="sticky-opacity" type="range" min={0} max={100} value={Math.round(stickyTintOpacity * 100)} onChange={(e) => setStickyTintOpacity(Number(e.target.value) / 100)} className="h-2 w-24 accent-[#268bd2]" />
                   <span className="text-xs text-[#657b83] w-8">{Math.round(stickyTintOpacity * 100)}%</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <label className="text-xs text-[#586e75] w-12">Blur</label>
-                  <input type="range" min={0} max={40} value={stickyBlurPx} onChange={(e) => setStickyBlurPx(Number(e.target.value))} className="h-2 w-24 accent-[#268bd2]" />
+                  <label htmlFor="sticky-blur" className="text-xs text-[#586e75] w-12">Blur</label>
+                  <input id="sticky-blur" type="range" min={0} max={40} value={stickyBlurPx} onChange={(e) => setStickyBlurPx(Number(e.target.value))} className="h-2 w-24 accent-[#268bd2]" />
                   <span className="text-xs text-[#657b83] w-8">{stickyBlurPx}px</span>
                 </div>
               </div>
