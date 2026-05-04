@@ -1,3 +1,3 @@
-## 2025-01-01 - Form Label Associations in Interactive Property Panels
-**Learning:** In interactive tool panels (like visual designers), developers often use visual grouping (text next to a slider or input) without providing proper semantic labels. This makes the controls completely invisible to screen readers, which cannot associate the visual context with the interactive element.
-**Action:** Always ensure that every interactive input (`<select>`, `<input type="color">`, `<input type="range">`, etc.) has either a semantic `<label htmlFor="...">` referencing its `id`, or a descriptive `aria-label` when visually hidden or icon-only.
+## 2026-05-03 - Focus Indicators for Accessibility
+**Learning:** Using `outline-none` on native form elements like `<select>` and `<input type="color">` without providing a custom `focus-visible` alternative completely removes keyboard focus indicators. This severely degrades accessibility for users navigating via keyboard.
+**Action:** Always replace `outline-none` with a visible focus state, such as `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color]` to ensure focus is clearly indicated while avoiding default browser outlines on mouse clicks.
