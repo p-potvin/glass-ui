@@ -7,6 +7,8 @@ export type GlassVariant =
   | 'frosted'
   | 'clear'
   | 'subtle'
+  | 'tinted'
+  | 'dark'
 
 export interface GlassPanelProps {
   /** Visual style of the glass effect */
@@ -38,12 +40,14 @@ export const GlassPanel: React.FC<GlassPanelProps> = ({
   style,
 }) => {
   const variantClasses: Record<GlassVariant, string> = {
-    liquid: 'bg-white/10 backdrop-blur-md border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.1)]',
-    vibrant: 'bg-gradient-to-br from-[#268bd2]/20 to-[#d33682]/20 backdrop-blur-md border border-white/40 shadow-lg',
-    'solarized-frosted': 'bg-[#eee8d5]/40 backdrop-blur-md border border-[#93a1a1]/20 shadow-sm',
-    frosted: 'bg-white/40 backdrop-blur-md border border-white/50 shadow-md',
-    clear: 'bg-white/10 backdrop-blur-sm border border-white/20 shadow-sm',
-    subtle: 'bg-white/5 backdrop-blur-[2px] border border-white/10 shadow-none',
+    liquid: 'bg-white/10 backdrop-blur-md border border-white/30 shadow-md',
+    vibrant: 'bg-gradient-to-br from-accent/20 to-accent-muted/20 backdrop-blur-md border border-white/40 shadow-lg',
+    'solarized-frosted': 'bg-surface-alt/40 backdrop-blur-md border border-vault-muted/20 shadow-sm text-text',
+    frosted: 'bg-surface/80 backdrop-blur-md border border-surface-alt shadow-md text-text',
+    clear: 'bg-surface/40 backdrop-blur-sm border border-surface-alt/50 shadow-sm text-text',
+    subtle: 'bg-surface/20 backdrop-blur-[2px] border border-surface-alt/20 shadow-none text-text',
+    tinted: 'bg-accent/10 backdrop-blur-md border border-accent/20 shadow-md text-text',
+    dark: 'bg-vault-base/80 backdrop-blur-lg border border-vault-slate/50 shadow-xl text-vault-paper',
   }
 
   // helper: convert #rrggbb to rgba(...) with provided alpha
