@@ -111,14 +111,34 @@ function CssVariantsDemo({ onViewChange }: { onViewChange: (view: string) => voi
           <p className="text-text-muted text-sm">High blur with slightly lower transparency. Good for dialogs.</p>
         </GlassPanel>
 
-        <GlassPanel variant="tinted" className="p-6">
-          <h3 className="text-xl font-semibold text-text mb-2">Tinted Glass</h3>
-          <p className="text-text-muted text-sm">Darker background with moderate blur. Provides high contrast.</p>
-        </GlassPanel>
+                <button
+                  onClick={copyCss}
+                  data-no-drag
+                  aria-live="polite"
+                  className="rounded-md bg-[#268bd2] px-3 py-1 text-sm font-medium text-white hover:bg-[#207bba] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#268bd2] transition-colors"
+                >
+                  {copied ? 'Copied' : 'Copy CSS'}
+                </button>
+              </div>
 
-        <GlassPanel variant="dark" className="p-6">
-          <h3 className="text-xl font-semibold text-white mb-2">Dark Glass</h3>
-          <p className="text-gray-300 text-sm">Very dark with strong blur. For dark mode UI elements.</p>
+              <pre
+                className="mt-1 overflow-auto rounded-md bg-[#fdf6e3] border border-[#93a1a1]/20 px-3 py-2 text-xs text-[#586e75] h-24 cursor-pointer hover:bg-[#eee8d5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#268bd2] transition-colors"
+                onClick={copyCss}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    copyCss();
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-label="Click to copy CSS code"
+                title="Click to copy CSS"
+              >
+                {cssString}
+              </pre>
+            </div>
+          </div>
         </GlassPanel>
       </main>
     </div>
