@@ -119,8 +119,12 @@ function TexturedGlassKnot() {
 
 export const LiquidGlassEffect = () => {
   return (
-    <div className="w-full h-96 relative overflow-hidden rounded-2xl bg-surface-alt border border-vault-muted/20 shadow-inner">
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+    <div
+      className="w-full h-96 relative overflow-hidden rounded-2xl bg-surface-alt border border-vault-muted/20 shadow-inner"
+      role="img"
+      aria-label="Interactive 3D rendering of a refractive liquid shape"
+    >
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
         <h2 className="text-6xl font-bold text-vault-muted opacity-20 select-none">iOS 26 Liquid</h2>
       </div>
       <div className="absolute inset-0 z-10">
@@ -138,8 +142,12 @@ export const LiquidGlassEffect = () => {
 
 export const RefractiveSphereEffect = () => {
   return (
-    <div className="w-full h-96 relative overflow-hidden rounded-2xl bg-vault-base border border-vault-muted/20 shadow-inner">
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+    <div
+      className="w-full h-96 relative overflow-hidden rounded-2xl bg-vault-base border border-vault-muted/20 shadow-inner"
+      role="img"
+      aria-label="Interactive 3D rendering of a refractive bubble over colored orbs"
+    >
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
         <h2 className="text-6xl font-bold text-vault-muted opacity-20 select-none">Refractive Bubble</h2>
       </div>
       <div className="absolute inset-0 z-10">
@@ -157,8 +165,12 @@ export const RefractiveSphereEffect = () => {
 
 export const TexturedGlassCubeEffect = () => {
   return (
-    <div className="w-full h-96 relative overflow-hidden rounded-2xl bg-vault-paper border border-vault-muted/20 shadow-inner">
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+    <div
+      className="w-full h-96 relative overflow-hidden rounded-2xl bg-vault-paper border border-vault-muted/20 shadow-inner"
+      role="img"
+      aria-label="Interactive 3D rendering of a frosted glass knot over colored orbs"
+    >
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
         <h2 className="text-6xl font-bold text-vault-muted opacity-20 select-none">Frosted Knot</h2>
       </div>
       <div className="absolute inset-0 z-10">
