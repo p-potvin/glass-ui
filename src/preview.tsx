@@ -22,14 +22,14 @@ function Menu({ onViewChange }: { onViewChange: (view: string) => void }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <button
           onClick={() => onViewChange('liquid')}
-          className="flex flex-col items-start p-6 bg-primary hover:bg-surface-alt hover:shadow-sm transition-all rounded-lg border border-surface-alt group cursor-pointer text-left"
+          className="flex flex-col items-start p-6 bg-primary hover:bg-surface-alt hover:shadow-sm transition-all rounded-lg border border-surface-alt group cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         >
           <span className="font-semibold text-lg text-text group-hover:text-accent transition-colors">Liquid Glass</span>
           <span className="text-sm text-text-muted mt-2">Interactive 3D WebGL refraction examples</span>
         </button>
         <button
           onClick={() => onViewChange('css')}
-          className="flex flex-col items-start p-6 bg-primary hover:bg-surface-alt hover:shadow-sm transition-all rounded-lg border border-surface-alt group cursor-pointer text-left"
+          className="flex flex-col items-start p-6 bg-primary hover:bg-surface-alt hover:shadow-sm transition-all rounded-lg border border-surface-alt group cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         >
           <span className="font-semibold text-lg text-text group-hover:text-accent transition-colors">CSS Glass Panels</span>
           <span className="text-sm text-text-muted mt-2">Standard UI glassmorphism variants</span>
@@ -49,7 +49,7 @@ function LiquidGlassDemo({ onViewChange }: { onViewChange: (view: string) => voi
         </div>
         <button
           onClick={() => onViewChange('menu')}
-          className="px-4 py-2 text-sm font-medium text-surface bg-accent hover:bg-accent-muted transition-colors rounded-md shadow-sm cursor-pointer"
+          className="px-4 py-2 text-sm font-medium text-surface bg-accent hover:bg-accent-muted transition-colors rounded-md shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         >
           Back to Menu
         </button>
@@ -94,7 +94,7 @@ function CssVariantsDemo({ onViewChange }: { onViewChange: (view: string) => voi
         </div>
         <button
           onClick={() => onViewChange('menu')}
-          className="px-4 py-2 text-sm font-medium text-surface bg-accent hover:bg-accent-muted transition-colors rounded-md shadow-sm cursor-pointer"
+          className="px-4 py-2 text-sm font-medium text-surface bg-accent hover:bg-accent-muted transition-colors rounded-md shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         >
           Back to Menu
         </button>

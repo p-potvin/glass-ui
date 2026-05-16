@@ -6,3 +6,36 @@
     @apply bg-primary text-text font-sans antialiased;
   }
 }
+
+@theme {
+  --color-primary: var(--vault-background);
+  --color-surface: var(--vault-surface);
+  --color-surface-elevated: var(--vault-surface-elevated);
+  --color-surface-alt: var(--vault-border-subtle);
+  --color-text: var(--vault-text-primary);
+  --color-text-muted: var(--vault-text-secondary);
+  --color-accent: var(--vault-cyan);
+  --color-accent-muted: var(--vault-gold);
+
+  --color-vault-base: var(--vault-base);
+  --color-vault-paper: var(--vault-paper);
+  --color-vault-paper-bright: var(--vault-paper-bright);
+  --color-vault-ink: var(--vault-ink);
+  --color-vault-slate: var(--vault-slate);
+  --color-vault-muted: var(--vault-muted);
+  --color-vault-gold: var(--vault-gold);
+  --color-vault-gold-muted: var(--vault-gold-muted);
+  --color-vault-gold-light: var(--vault-gold-light);
+  --color-vault-cyan: var(--vault-cyan);
+  --color-vault-green: var(--vault-green);
+  --color-vault-burgundy: var(--vault-burgundy);
+  --color-vault-deep-sea: var(--vault-deep-sea);
+
+  --font-sans: var(--vault-font-sans);
+  --font-mono: var(--vault-font-mono);
+
+  --radius-vault: var(--vault-radius);
+  --radius-vault-panel: var(--vault-radius-panel);
+
+  --transition-duration-vault: var(--vault-motion-base);
+}
