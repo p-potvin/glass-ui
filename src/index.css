@@ -1,8 +1,8 @@
 @import "tailwindcss";
-@import "../vault-themes/tailwind/vault-theme.css";
+@import "../vault-themes/theme-manager/exports/vault-tailwind-v4.css";
 
 @layer base {
   body {
-    @apply bg-primary text-text font-sans antialiased;
+    @apply bg-background text-text font-sans antialiased;
   }
 }

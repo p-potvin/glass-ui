@@ -44,7 +44,7 @@ function LiquidGlassDemo({ onViewChange }: { onViewChange: (view: string) => voi
     <div className="flex flex-col min-h-screen">
       <header className="p-4 flex items-center justify-between bg-surface shadow-sm sticky top-0 z-10 border-b border-surface-alt">
         <div className="flex items-center gap-3">
-          <img src="vaultwares-logo.svg" alt="Logo" className="h-6" />
+          <img src="vaultwares-logo.svg" alt="VaultWares Logo" className="h-6" />
           <h1 className="font-semibold text-lg text-text">Liquid Glass</h1>
         </div>
         <button
@@ -89,7 +89,7 @@ function CssVariantsDemo({ onViewChange }: { onViewChange: (view: string) => voi
     <div className="flex flex-col min-h-screen bg-primary">
       <header className="p-4 flex items-center justify-between bg-surface shadow-sm sticky top-0 z-10 border-b border-surface-alt">
         <div className="flex items-center gap-3">
-          <img src="vaultwares-logo.svg" alt="Logo" className="h-6" />
+          <img src="vaultwares-logo.svg" alt="VaultWares Logo" className="h-6" />
           <h1 className="font-semibold text-lg text-text">CSS Glass Panels</h1>
         </div>
         <button
