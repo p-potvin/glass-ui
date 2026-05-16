@@ -1,5 +1,15 @@
 @import "tailwindcss";
-@import "../vault-themes/tailwind/vault-theme.css";
+@import "../vault-themes/brand/tokens/css-variables.css";
+
+@theme {
+  --color-primary: var(--vault-background);
+  --color-surface: var(--vault-surface);
+  --color-surface-alt: var(--vault-surface-elevated);
+  --color-text: var(--vault-text-primary);
+  --color-text-muted: var(--vault-text-secondary);
+  --color-accent: var(--vault-gold);
+  --color-accent-muted: var(--vault-gold-muted);
+}
 
 @layer base {
   body {

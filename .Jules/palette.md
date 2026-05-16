@@ -1,6 +1,3 @@
-## 2026-05-03 - Focus Indicators for Accessibility
-**Learning:** Using `outline-none` on native form elements like `<select>` and `<input type="color">` without providing a custom `focus-visible` alternative completely removes keyboard focus indicators. This severely degrades accessibility for users navigating via keyboard.
-**Action:** Always replace `outline-none` with a visible focus state, such as `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color]` to ensure focus is clearly indicated while avoiding default browser outlines on mouse clicks.
-## 2024-05-04 - Code Block Interaction
-**Learning:** Users often try to click code snippet blocks to copy them, not just the associated copy button. Making the `<pre>` block interactive provides a better UX. It's important to remember to add `role="button"`, `tabIndex={0}`, and an `onKeyDown` handler (listening for Space/Enter) to maintain accessibility when turning non-interactive elements into interactive ones.
-**Action:** When adding copy-to-clipboard functionality to code snippets, always consider making the code block itself an interactive, accessible button.
+## 2026-05-08 - Keyboard Navigation in Glassmorphism UIs
+**Learning:** Adding `focus-visible` styles with offset rings (`focus-visible:ring-offset-2`) is critical for visibility against varied colored glass backgrounds. The default browser focus ring often gets lost in the blur or gradient of the glassmorphism elements.
+**Action:** Always include a `focus-visible:ring-offset-surface` or `focus-visible:ring-offset-primary` matching the underlying background color when styling interactive elements placed on top of glass panels.
