@@ -1,6 +1,17 @@
 @import "tailwindcss";
 @import "../vault-themes/tailwind/vault-theme.css";
 
+@theme {
+  --color-primary: var(--vault-background);
+  --color-surface: var(--vault-surface);
+  --color-surface-alt: var(--vault-surface-elevated);
+  --color-text: var(--vault-text-primary);
+  --color-text-muted: var(--vault-text-secondary);
+  --color-accent: var(--vault-cyan);
+  --color-accent-muted: var(--vault-cyan); /* TODO */
+  --font-sans: var(--vault-font-sans);
+}
+
 @layer base {
   body {
     @apply bg-primary text-text font-sans antialiased;
