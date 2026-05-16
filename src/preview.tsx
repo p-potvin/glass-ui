@@ -207,7 +207,7 @@ function GlassExample() {
                   value={variant}
                   onChange={(e) => setVariant(e.target.value as GlassVariant)}
                   data-no-drag
-                  className="rounded-lg border border-[#93a1a1]/20 bg-[#eee8d5] px-2 py-1 text-[#657b83] text-sm outline-none w-32"
+                  className="rounded-lg border border-[#93a1a1]/20 bg-[#eee8d5] px-2 py-1 text-[#657b83] text-sm focus-visible:ring-2 focus-visible:ring-[#268bd2] focus:outline-none w-32"
                 >
                   {variants.map((v) => (
                     <option key={v} value={v} className="bg-[#eee8d5] text-[#657b83]">
@@ -222,7 +222,7 @@ function GlassExample() {
                   value={tintColor}
                   onChange={(e) => setTintColor(e.target.value)}
                   data-no-drag
-                  className="w-9 h-9 rounded-md border border-[#93a1a1]/20 p-0"
+                  className="w-9 h-9 rounded-md border border-[#93a1a1]/20 p-0 focus-visible:ring-2 focus-visible:ring-[#268bd2] focus:outline-none"
                 />
               </div>
 
@@ -286,7 +286,10 @@ function GlassExample() {
                 <button
                   onClick={copyCss}
                   data-no-drag
-                  className="rounded-md bg-[#268bd2] px-3 py-1 text-sm font-medium text-white hover:bg-[#207bba] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#268bd2] transition-colors"
+                  aria-live="polite"
+                  className={`rounded-md px-3 py-1 text-sm font-medium text-white transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#268bd2] ${
+                    copied ? 'bg-[#859900] hover:bg-[#859900]' : 'bg-[#268bd2] hover:bg-[#207bba]'
+                  }`}
                 >
                   {copied ? 'Copied' : 'Copy CSS'}
                 </button>
@@ -363,7 +366,7 @@ function ScrollDemo() {
                     id="sticky-variant"
                     value={variant}
                     onChange={(e) => setVariant(e.target.value as GlassVariant)}
-                    className="rounded-lg border border-[#93a1a1]/20 bg-[#eee8d5] px-2 py-1 text-[#657b83] outline-none text-sm w-36"
+                    className="rounded-lg border border-[#93a1a1]/20 bg-[#eee8d5] px-2 py-1 text-[#657b83] focus-visible:ring-2 focus-visible:ring-[#268bd2] focus:outline-none text-sm w-36"
                   >
                     {variants.map((v) => (
                       <option key={v} value={v}>{v}</option>
@@ -372,7 +375,7 @@ function ScrollDemo() {
                 </div>
                 <div className="flex items-center gap-2">
                   <label htmlFor="sticky-tint" className="text-xs text-[#586e75] w-12">Tint</label>
-                  <input id="sticky-tint" type="color" value={stickyTint} onChange={(e) => setStickyTint(e.target.value)} className="w-8 h-8 rounded-md border border-[#93a1a1]/20 p-0" />
+                  <input id="sticky-tint" type="color" value={stickyTint} onChange={(e) => setStickyTint(e.target.value)} className="w-8 h-8 rounded-md border border-[#93a1a1]/20 p-0 focus-visible:ring-2 focus-visible:ring-[#268bd2] focus:outline-none" />
                 </div>
                 <div className="flex items-center gap-2">
                   <label htmlFor="sticky-opacity" className="text-xs text-[#586e75] w-12">Opacity</label>
